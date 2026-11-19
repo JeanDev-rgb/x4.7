@@ -1,8 +1,8 @@
--- [[ Nyanko_x4.7 - Module(menu) ]]
--- Source: https://github.com/Rento055/x4.7
+-- [[ Nyanko_x4.7 - Módulo de menú ]]
+-- Repositorio: https://github.com/JeanDev-rgb/x4.7
 
--- ※モジュールの仕様を変更する場合、x4.7(正規版)の実行時にconf.luaの自動更新は行われません。
--- > 変更箇所が反映されない場合には「スクリプト設定」->「数値のデータ更新」を実行してください。
+-- Nota: los cambios en este módulo no actualizan automáticamente conf.lua en instalaciones existentes.
+-- Si los cambios no aparecen, ejecuta «Configuración» > «Actualizar datos numéricos».
 
 local menu = {
     version = gg.getTargetInfo().versionName:gsub("%.", "_");
@@ -15,7 +15,7 @@ menu.load_data = function(self)
         menu:setup();
     end
 
-    -- 数値更新
+    -- Actualizar valores numéricos
     local v = dofile(self.path:gsub("?", self.version));
     for s, t in pairs(v) do
         if s == "base" then goto continue;end
@@ -29,40 +29,40 @@ menu.load_data = function(self)
 end
 
 menu.setup = function(self)
-    gg.toast("Updating config data...");
+    gg.toast("Actualizando los datos de configuración...");
     local new_conf = {
         ["version"] = gg.getTargetInfo().versionName, 
         ["menu_names"] = {"basic", "option"}, 
     };
     local datas = {{
         -- Basic menu
-        [1] = {name = "Catfood [0;58999]", type = "number", value = "58000", key = "catfood"}, 
+        [1] = {name = "Comida para gatos [0;58999]", type = "number", value = "58000", key = "catfood"}, 
         [2] = {name = "XP [0;99999999]", type = "number", value = "777777777", key = "xp"}, 
-        [3] = {name = "Normal Ticket [0;999]", type = "number", value = "200", key = "normal_ticket"}, 
-        [4] = {name = "Rare Ticket [0;999]", type = "number", value = "200", key = "rare_ticket"}, 
-        [5] = {name = "Instant Win", type = "checkbox", value = false, key = "win"},
-        [6] = {name = "Unlock All Stages", type = "checkbox", value = false,  key = "stage_flag"}, 
+        [3] = {name = "Billete normal [0;999]", type = "number", value = "200", key = "normal_ticket"}, 
+        [4] = {name = "Billete raro [0;999]", type = "number", value = "200", key = "rare_ticket"}, 
+        [5] = {name = "Victoria instantánea", type = "checkbox", value = false, key = "win"},
+        [6] = {name = "Desbloquear todas las fases", type = "checkbox", value = false,  key = "stage_flag"}, 
         [7] = {name = "Back", type = "checkbox", value = false, key = "callmain"}
     }, {
         -- Option menu
-        [1] = {name = "Unlock All Characters", type = "checkbox", value = false, key = "char_flag"}, 
-        [2] = {name = "All Characters Level\nInput Example: 20+10", type = "number", value = "", key = "char_level", encrypt = false}, 
-        [3] = {name = "All Characters Form [0;5]", type = "number", value = "2", key = "char_form", encrypt = false}, 
-        [4] = {name = "Selecta Characters", type = "checkbox", value = false, key = "char_des"}, 
-        [5] = {name = "Remove Error Characters", type = "checkbox", value = false, key = "char_delete"}, 
-        [6] = {name = "Unlock Treasures", type = "checkbox", value = false, key = "treasure"}, 
-        [7] = {name = "Facility Level\nInput Example: 20+10", type = "number", value = "", key = "facility_level", encrypt = false}, 
+        [1] = {name = "Desbloquear todos los personajes", type = "checkbox", value = false, key = "char_flag"}, 
+        [2] = {name = "Nivel de todos los personajes\nEjemplo: 20+10", type = "number", value = "", key = "char_level", encrypt = false}, 
+        [3] = {name = "Forma de todos los personajes [0;5]", type = "number", value = "2", key = "char_form", encrypt = false}, 
+        [4] = {name = "Seleccionar personajes", type = "checkbox", value = false, key = "char_des"}, 
+        [5] = {name = "Eliminar personajes con errores", type = "checkbox", value = false, key = "char_delete"}, 
+        [6] = {name = "Desbloquear tesoros", type = "checkbox", value = false, key = "treasure"}, 
+        [7] = {name = "Nivel de instalaciones\nEjemplo: 20+10", type = "number", value = "", key = "facility_level", encrypt = false}, 
         [8] = {name = "NP", type = "checkbox", value = false, key = "on_off"}, 
         [9] = {name = "NP [0;99999]", type = "number", value = "2000", key = "np"}, 
-        [10] = {name = "Items", type = "checkbox", value = false, key = "on_off"}, 
-        [11] = {name = "Items [0;9999]", type = "number", value = "120", key = "items", encrypt = false}, 
-        [12] = {name = "Catseye", type = "checkbox", value = false, key = "on_off"}, 
-        [13] = {name = "Catseye [0;999]", type = "number", value = "30", key = "catseye", encrypt = false}, 
-        [14] = {name = "Catvitan", type = "checkbox", value = false, key = "on_off"}, 
-        [15] = {name = "Catvitan [0;999]", type = "number", value = "60", key = "catvitan", encrypt = false}, 
-        [16] = {name = "Castle Materials", type = "checkbox", value = false, key = "on_off"}, 
-        [17] = {name = "Castle Materials [0;999]", type = "number", value = "120", key = "castle_material", encrypt = false}, 
-        [18] = {name = "Hide Ads", type = "checkbox", value = false, key = "no_ads"},
+        [10] = {name = "Objetos", type = "checkbox", value = false, key = "on_off"}, 
+        [11] = {name = "Objetos [0;9999]", type = "number", value = "120", key = "items", encrypt = false}, 
+        [12] = {name = "Gatotrofeo", type = "checkbox", value = false, key = "on_off"}, 
+        [13] = {name = "Gatotrofeo [0;999]", type = "number", value = "30", key = "catseye", encrypt = false}, 
+        [14] = {name = "Gatovitan", type = "checkbox", value = false, key = "on_off"}, 
+        [15] = {name = "Gatovitan [0;999]", type = "number", value = "60", key = "catvitan", encrypt = false}, 
+        [16] = {name = "Materiales del castillo", type = "checkbox", value = false, key = "on_off"}, 
+        [17] = {name = "Materiales del castillo [0;999]", type = "number", value = "120", key = "castle_material", encrypt = false}, 
+        [18] = {name = "Ocultar anuncios", type = "checkbox", value = false, key = "no_ads"},
         [19] = {name = "Back", type = "checkbox", value = false, key = "callmain"}
     }};
 
@@ -72,7 +72,7 @@ menu.setup = function(self)
             -- t.value = t.type == "number" and self[t.key.."_b"](t.key);
             -- local v = self[t.key.."_b"](t.key);
             local _, v = xpcall(self[t.key.."_b"], function()
-                gg.alert("Setup Error: "..t.key.."\n\nExecution skipped.");
+                gg.alert("Error de configuración: "..t.key.."\n\nExecution skipped.");
                 return nil;
             end, t.key);
             t.value = v or t.value;
@@ -130,7 +130,7 @@ local function val_edit(key, val, name)
     t[1].name, t[2].name = name, name.."0";
     t[1].freeze, t[2].freeze = true, true;
     t[1].value, t[2].value = encrypt(val);
-    gg.addListItems(t);
+    gg.addListObjetos(t);
     return decrypt(menu.datas[key]);
 end
 
@@ -142,7 +142,7 @@ local function edit_items(key, val, name)
         t.freeze = true;
         t.name = name..(s%2 == 1 and "" or "0");
     end
-    gg.addListItems(res);
+    gg.addListObjetos(res);
 end
 
 -- Search address
@@ -157,7 +157,7 @@ end
 
 -- Return value
 menu.catfood = function(key, val)
-    return val_edit(key, val, "Catfood");
+    return val_edit(key, val, "Comida para gatos");
 end
 
 menu.xp_b = function(key)
@@ -186,7 +186,7 @@ menu.normal_ticket_b = function(key)
 end
 
 menu.normal_ticket = function(key, val)
-    return val_edit(key, val, "Normal Ticket");
+    return val_edit(key, val, "Billete normal");
 end
 
 menu.rare_ticket_b = function(key)  --> normal_ticket_b
@@ -194,7 +194,7 @@ menu.rare_ticket_b = function(key)  --> normal_ticket_b
 end
 
 menu.rare_ticket = function(key, val)
-    return val_edit(key, val, "Rare Ticket");
+    return val_edit(key, val, "Billete raro");
 end
 
 menu.win_b = function(key)
@@ -204,9 +204,9 @@ end
 menu.win = function(key, val)
     gg.clearResults();
     gg.searchNumber("3200;4400;1~2147483647::29", 4, false, 536870912, base, base+0xffffff);
-    if gg.getResultsCount() < 4 then return gg.alert("Please run during a match.");end
+    if gg.getResultsCount() < 4 then return gg.alert("Ejecuta esta opción durante una partida.");end
     local res = gg.getResults(1, gg.getResultsCount()-1);
-    gg.addListItems((function()
+    gg.addListObjetos((function()
         res[1].freeze = true;
         res[1].value = 0;
         return res;
@@ -278,10 +278,10 @@ menu.char_level = function(key, val)    -- キャラ名あるといいね
     local lp = (level > 0 and level-1 or 0)*65536 + plus;
     local v, res2 = {encrypt(lp)}, {};
     for i = res[2].address - 2*diff/3 + 4, res[2].address - 8, 8 do
-        res2[#res2+1] = {address = i, flags = 4, freeze = true, name="Characters Level", value = v[1]};
-        res2[#res2+1] = {address = i+4, flags = 4, freeze = true, name="Characters Level 0", value = v[2]};
+        res2[#res2+1] = {address = i, flags = 4, freeze = true, name="Nivel de personajes", value = v[1]};
+        res2[#res2+1] = {address = i+4, flags = 4, freeze = true, name="Nivel de personajes 0", value = v[2]};
     end
-    gg.addListItems(res2);
+    gg.addListObjetos(res2);
     return false;
 end
 
@@ -292,7 +292,7 @@ end
 menu.char_form = function(key, val)     -- レベル調整した方が安全
     local res = menu.datas["char_flag"];
     local diff = res[2].address - res[1].address;
-    gg.toast("Processing...");
+    gg.toast("Procesando...");
     local info = gg.makeRequest("https://battlecats-db.com/unit/frm_final.html").content or "";
     local i, res2 = 1, {};
     for addr = res[2].address + 4, res[2].address + diff/3 - 4, 4 do
@@ -300,7 +300,7 @@ menu.char_form = function(key, val)     -- レベル調整した方が安全
         val, n = tonumber(val), tonumber(n) or 100;
         if val then
             n = val < n and val or n;
-            res2[#res2+1] = {address = addr, flags = 4, name="Characters Form", value = n - 1};
+            res2[#res2+1] = {address = addr, flags = 4, name="Forma de personajes", value = n - 1};
         end
         i = i + 1;
     end
@@ -344,7 +344,7 @@ menu.treasure = function(key, val)
     gg.startFuzzy(4, res[2].address - 500*4 + 4, res[2].address);
     local i, res2 = 0, {};
     for addr = res[2].address - 500*4 + 4, res[2].address, 4 do
-        res2[i] = {address = addr, flags = 4, name = "Treasure", value = i%50 > 47 and 259 or 256};
+        res2[i] = {address = addr, flags = 4, name = "Tesoro", value = i%50 > 47 and 259 or 256};
         i = i + 1;
     end
     gg.setValues(res2);
@@ -365,7 +365,7 @@ menu.facility_level = function(key, val)
     if level > 20 then level = 20; end  -- レベル上限
     if plus > 10 then plus = 10; end    -- レベル上限
     local lp = (level > 0 and level-1 or 0)*65536 + plus;
-    edit_items(key, lp, "Facility Level");
+    edit_items(key, lp, "Nivel de instalaciones");
     return false;
 end
 
@@ -386,7 +386,7 @@ menu.items_b = function(key)
 end
 
 menu.items = function(key, val)
-    edit_items(key, val, "Items");
+    edit_items(key, val, "Objetos");
     return false;
 end
 
@@ -403,7 +403,7 @@ menu.catseye_b = function(key)
 end
 
 menu.catseye = function(key, val)
-    edit_items(key, val, "Catseye");
+    edit_items(key, val, "Gatotrofeo");
     return false;
 end
 
@@ -412,7 +412,7 @@ menu.catvitan_b = function(key)         --> catseye_b
 end
 
 menu.catvitan = function(key, val)
-    edit_items(key, val, "Catvitan");
+    edit_items(key, val, "Gatovitan");
     return false;
 end
 
@@ -421,7 +421,7 @@ menu.castle_material_b = function(key)  --> catseye_b
 end
 
 menu.castle_material = function(key, val)
-    edit_items(key, val, "Castle Materials");
+    edit_items(key, val, "Materiales del castillo");
     return false;
 end
 
@@ -439,16 +439,16 @@ menu.no_ads = function(key, val)
         gg.clearResults();
         gg.searchNumber("-1~101", 4, false, 536870912, v.address-0x2c, v.address);
         gg.refineNumber("-1~~101", 4);
-        gg.addListItems({{
+        gg.addListObjetos({{
             address = gg.getResults(1, gg.getResultsCount()-1)[1].address, 
             flags = 4, 
-            name = "No Ads "..1, 
+            name = "Sin anuncios "..1, 
             freeze = true, 
             value = -1
         }, {
             address = gg.getResults(1, gg.getResultsCount()-1)[1].address+4, 
             flags = 4, 
-            name = "No Ads "..1, 
+            name = "Sin anuncios "..1, 
             freeze = true, 
             value = 0
         }});
