@@ -1,18 +1,30 @@
 # Nyanko_x4.7
-オープンソースのにゃんこスクリプトです。  
-  
-# 使用方法
-１．[installer.lua](https://github.com/Rento055/x4.7/blob/main/installer.lua)をダウンロードして実行  
-- ネットワークへのアクセスを許可すると自動で完結します。
 
-# 使用技術
-- アドレスパック（データ保持と書き換え）  
-- オフセット（検索時間短縮）  
-- グループ検索（アプデ対応検索）
+Script de código abierto para **The Battle Cats**, con interfaz y mensajes en español.
 
-# 推奨環境・ツール類
-- [GameGuardian](https://gameguardian.net/forum/files/file/2-gameguardian/)（実行ツール）  
-- [Android OS](https://www.apple.com/jp/os/android)（実機又はエミュレータ）  
-  
-環境構築については端末によって異なります。  
-各自[ググって](https://www.google.com/search?q=ggrks)ください。  
+## Instalación
+
+1. Descarga el archivo [installer.lua](installer.lua).
+2. Ábrelo y ejecútalo desde **GameGuardian**.
+3. Permite el acceso a Internet para que se descarguen automáticamente los archivos necesarios.
+4. Cuando termine la instalación, ejecuta `Nyanko_x4.7.lua`.
+
+## Requisitos
+
+- Android (dispositivo físico o emulador).
+- [GameGuardian](https://gameguardian.net/forum/files/file/2-gameguardian/).
+- Conexión a Internet durante la instalación y para las funciones que consultan datos externos.
+
+## Características técnicas
+
+- Paquetes de direcciones para conservar y modificar datos.
+- Uso de desplazamientos para reducir los tiempos de búsqueda.
+- Búsqueda por grupos para facilitar la adaptación a actualizaciones.
+
+## Directorios utilizados
+
+El instalador guarda los archivos en `/sdcard/catfood/`, dentro de las carpetas `mods`, `datas` y `ext`.
+
+## Aviso
+
+El funcionamiento puede variar según la versión del juego, el dispositivo y el entorno de ejecución.
