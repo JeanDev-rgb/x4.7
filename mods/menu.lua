@@ -130,7 +130,7 @@ local function val_edit(key, val, name)
     t[1].name, t[2].name = name, name.."0";
     t[1].freeze, t[2].freeze = true, true;
     t[1].value, t[2].value = encrypt(val);
-    gg.addListObjetos(t);
+    gg.addListItems(t);
     return decrypt(menu.datas[key]);
 end
 
@@ -142,7 +142,7 @@ local function edit_items(key, val, name)
         t.freeze = true;
         t.name = name..(s%2 == 1 and "" or "0");
     end
-    gg.addListObjetos(res);
+    gg.addListItems(res);
 end
 
 -- Search address
@@ -206,7 +206,7 @@ menu.win = function(key, val)
     gg.searchNumber("3200;4400;1~2147483647::29", 4, false, 536870912, base, base+0xffffff);
     if gg.getResultsCount() < 4 then return gg.alert("Ejecuta esta opción durante una partida.");end
     local res = gg.getResults(1, gg.getResultsCount()-1);
-    gg.addListObjetos((function()
+    gg.addListItems((function()
         res[1].freeze = true;
         res[1].value = 0;
         return res;
@@ -281,7 +281,7 @@ menu.char_level = function(key, val)    -- キャラ名あるといいね
         res2[#res2+1] = {address = i, flags = 4, freeze = true, name="Nivel de personajes", value = v[1]};
         res2[#res2+1] = {address = i+4, flags = 4, freeze = true, name="Nivel de personajes 0", value = v[2]};
     end
-    gg.addListObjetos(res2);
+    gg.addListItems(res2);
     return false;
 end
 
@@ -439,7 +439,7 @@ menu.no_ads = function(key, val)
         gg.clearResults();
         gg.searchNumber("-1~101", 4, false, 536870912, v.address-0x2c, v.address);
         gg.refineNumber("-1~~101", 4);
-        gg.addListObjetos({{
+        gg.addListItems({{
             address = gg.getResults(1, gg.getResultsCount()-1)[1].address, 
             flags = 4, 
             name = "Sin anuncios "..1, 
