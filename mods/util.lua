@@ -1,27 +1,27 @@
--- [[ Nyanko_x4.7 - Module(util) ]]
--- Source: https://github.com/Rento055/x4.7
+-- [[ Nyanko_x4.7 - Módulo de utilidades ]]
+-- Repositorio: https://github.com/JeanDev-rgb/x4.7
 
--- ※モジュールの仕様を変更する場合、x4.7(正規版)の実行時にconf.luaの自動更新は行われません。
--- > 変更箇所が反映されない場合には「スクリプト設定」->「数値のデータ更新」を実行してください。
+-- Nota: los cambios en este módulo no actualizan automáticamente conf.lua en instalaciones existentes.
+-- Si los cambios no aparecen, ejecuta «Configuración» > «Actualizar datos numéricos».
 
 local menu = require("menu");
 local util = {};
 
--- Config data management
+-- Administración de la configuración
 util.data = {};
 
 util.set_base_address = function()
     if base then
         return 0;
     end
-    -- Retrive time zone
+    -- Obtener la zona horaria
     local t = os.time();
     local time_zone = os.difftime(t, os.time(os.date("!*t", t)));
     baset = math.tointeger(time_zone);
     local hex_baset = ("h %02X %02X %02X %02X"):format(
         baset & 0xFF, (baset >> 8) & 0xFF, (baset >> 16) & 0xFF, (baset >> 24) & 0xFF
     );
-    -- Search base address
+    -- Buscar la dirección base
     local range = 48;   -- Cb, A
     ::start_i::
     gg.clearResults();
@@ -34,11 +34,11 @@ util.set_base_address = function()
             goto start_i;
         end
         gg.alert(table.concat({
-            "Failed to get base address. \nPlease restart the app."
+            "No se pudo obtener la dirección base.\nReinicia la aplicación."
         }, "\n\n"));
         return os.exit();
     end
-    -- Refine base address
+    -- Precisar la dirección base
     base = res[1].address;
     for i = 1, #res-8, 4 do
         local diff = res[i+8].address - res[i+4].address;
@@ -60,7 +60,7 @@ util.update_values = function(self)
 
             if menu.datas[t.key] and #menu.datas[t.key] == 0 and t.encrypt ~= false then
                 local _, v = xpcall(menu[t.key.."_b"], function()
-                    gg.alert("Setup Error: "..t.key.."\n\nPlease restart the app.");
+                    gg.alert("Error de configuración: "..t.key.."\n\nReinicia la aplicación.");
                     return nil;
                 end, t.key);
                 t.value = v or t.value;
@@ -76,15 +76,15 @@ util.update_values = function(self)
     end
 end
 
--- util.conf_updateは実行時の更新処理のみ。
+-- Esta función actualiza la configuración durante la ejecución.
 util.conf_update = function(self, _spec)
     util:set_base_address();
 
-    -- 各項目の実行及びデータの新規保存、値の抽出
+    -- Ejecutar cada elemento, guardar los datos y extraer sus valores
     self.data = menu:setup();
 
-    -- Save config data
-    gg.toast("Update completed");
+    -- Guardar los datos de configuración
+    gg.toast("Actualización completada");
     return gg.saveVariable(util.data, "/sdcard/catfood/conf.lua");
 end
 
@@ -104,11 +104,11 @@ util.exe = function(self, data, val)
     -- 数値があるかチェック
     if menu.datas[data.key] and #menu.datas[data.key] == 0 and data.encrypt ~= false then
         local _, v = xpcall(menu[data.key.."_b"], function()
-            gg.alert("Setup Error: "..data.key.."\n\nExecution skipped.");
+            gg.alert("Error de configuración: "..data.key.."\n\nSe omitió la ejecución.");
             return nil;
         end, data.key);
         if not v then
-            return gg.toast("Execution skipped.");
+            return gg.toast("Se omitió la ejecución.");
         end
         data.value = v or 0;
         local save_path = menu.path:gsub("?", menu.version);
@@ -126,12 +126,12 @@ util.input_type = function(self)
     local datas = self.data;
     local checked = datas.basic_datas[1].type == "number" and 1 or 2;
     local mp2 = gg.choice({
-        "Seekbar", 
-        "Direct Input"
-    }, checked, "Select the input format of numeric data.");
+        "Barra deslizante", 
+        "Entrada directa"
+    }, checked, "Selecciona el formato de entrada de los datos numéricos.");
 
     if mp2 == checked then
-        return gg.toast("Cancelled");
+        return gg.toast("Operación cancelada");
     end
 
     local type = mp2 == 1 and "number" or "not_seek";
@@ -144,7 +144,7 @@ util.input_type = function(self)
             end
         end
     end
-    gg.toast("Completed");
+    gg.toast("Completado");
 end
 
 util.data_link = function(self)
