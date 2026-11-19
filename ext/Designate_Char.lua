@@ -1,1 +1,2 @@
-gg.alert("この機能は制限されています。\nThis feature is restricted.");
+-- Extensión para seleccionar personajes
+gg.alert("Esta función está restringida.");
