@@ -1,6 +1,6 @@
--- [[ Nyanko_x4.7 - Index File ]]
--- Source: https://github.com/Rento055/x4.7
-local repo_inst = "https://raw.githubusercontent.com/Rento055/x4.7/refs/heads/main/installer.lua";
+-- [[ Nyanko_x4.7 - Archivo principal ]]
+-- Repositorio: https://github.com/JeanDev-rgb/x4.7
+local repo_inst = "https://raw.githubusercontent.com/JeanDev-rgb/x4.7/refs/heads/main/installer.lua";
 path = "/sdcard/catfood/";
 local conf_path = ("%sconf.lua"):format(path);
 package.path = ("%smods/?.lua"):format(path);
@@ -18,11 +18,11 @@ end
 -- Module Check and Installation
 if not module_exists("util", "menu") then
     gg.alert(table.concat({
-        "The module could not be found.\nIt can be downloaded over the network."
+        "No se encontró un módulo necesario.\nPuedes descargarlo desde Internet."
     }, "\n\n"));
     xpcall(load(gg.makeRequest(repo_inst).content or "error"), function()
         print(table.concat({
-            "Please install manually from "..repo_inst                  -- english
+            "Instálalo manualmente desde "..repo_inst                  -- english
         }, "\n\n"));
     end);
     gg.setVisible(true);
@@ -36,7 +36,7 @@ local util_ok, util = pcall(require, "util");
 -- Load error -> delete the files!
 if not menu_ok or not util_ok then
     gg.alert(table.concat({
-        "Module loading failed. Please rerun the script."
+        "No se pudieron cargar los módulos. Vuelve a ejecutar el script."
     }, "\n\n"));
     os.remove(package.path:gsub("?", "util"));
     os.remove(package.path:gsub("?", "menu"));
@@ -50,7 +50,7 @@ local _;
 
 -- Comfirm the game name
 if target.name ~= "にゃんこ大戦争" and target.name ~= "The Battle Cats" then
-    print("Process not set");
+    print("El proceso del juego no está seleccionado.");
     return os.exit();
 
 -- Search result for the config file
@@ -71,11 +71,11 @@ gg.saveVariable(util.data, conf_path);
 -- [[ main code ]]
 function main()
     local mp = gg.choice({
-        "Basic Menu", 
-        "Option Menu", 
-        "Settings", 
-        "Exit"
-    }, 2026, ("%s v%s"):format(target.name, target.versionName or "Unstable Environment"));
+        "Menú principal", 
+        "Más opciones", 
+        "Configuración", 
+        "Salir"
+    }, 2026, ("%s v%s"):format(target.name, target.versionName or "Entorno inestable"));
 
     if not mp then
 
@@ -88,11 +88,11 @@ function main()
     -- settings
     elseif mp == 3 then
         local mp2 = gg.choice({ 
-            "Update Numeric Data",     -- 手動または自動で更新
-            "Change Input Format",       -- gg.promptのNumber型とSeekbar型の変更
-            "Account Linking",       -- Pastebin連携でアップロードと取り込み対応
-            "Back"
-        }, 2026, ("%s v%s"):format(target.name, target.versionName or "Unstable Environment"));
+            "Actualizar datos numéricos",     -- 手動または自動で更新
+            "Cambiar formato de entrada",       -- gg.promptのNumber型とSeekbar型の変更
+            "Vincular cuenta",       -- Pastebin連携でアップロードと取り込み対応
+            "Volver"
+        }, 2026, ("%s v%s"):format(target.name, target.versionName or "Entorno inestable"));
 
         if not mp2 then
         elseif mp2 == 1 then util:conf_update();    -- self(util.data)に変更
@@ -103,7 +103,7 @@ function main()
 
     -- exit
     elseif mp == 4 then
-        print("Thank you for using Nyanko_x4.7!");
+        print("¡Gracias por utilizar Nyanko_x4.7!");
         gg.setVisible(true);
         return os.exit();
     end
