@@ -42,7 +42,7 @@ menu.setup = function(self)
         [4] = {name = "Billete raro [0;999]", type = "number", value = "200", key = "rare_ticket"}, 
         [5] = {name = "Victoria instantánea", type = "checkbox", value = false, key = "win"},
         [6] = {name = "Desbloquear todas las fases", type = "checkbox", value = false,  key = "stage_flag"}, 
-        [7] = {name = "Back", type = "checkbox", value = false, key = "callmain"}
+        [7] = {name = "Volver", type = "checkbox", value = false, key = "callmain"}
     }, {
         -- Option menu
         [1] = {name = "Desbloquear todos los personajes", type = "checkbox", value = false, key = "char_flag"}, 
@@ -63,7 +63,7 @@ menu.setup = function(self)
         [16] = {name = "Materiales del castillo", type = "checkbox", value = false, key = "on_off"}, 
         [17] = {name = "Materiales del castillo [0;999]", type = "number", value = "120", key = "castle_material", encrypt = false}, 
         [18] = {name = "Ocultar anuncios", type = "checkbox", value = false, key = "no_ads"},
-        [19] = {name = "Back", type = "checkbox", value = false, key = "callmain"}
+        [19] = {name = "Volver", type = "checkbox", value = false, key = "callmain"}
     }};
 
     -- データ挿入
